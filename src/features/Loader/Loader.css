@@ -1,0 +1,67 @@
+.loader-wrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  z-index: 9999;
+}
+
+.logo-container {
+  position: relative;
+  width: 220px;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.logo {
+  width: 100%;
+  display: block;
+  animation: logoAppear 1s ease forwards;
+}
+
+.shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 50%,
+    rgba(255, 255, 255, 0.682) 50%,
+    transparent 65%
+  );
+  transform: translateX(-180%);
+  animation: shine 1.2s linear infinite;
+}
+
+@keyframes logoAppear {
+  0% {
+    opacity: 0;
+    transform: scale(.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-280%);
+  }
+  60% {
+    transform: translateX(280%);
+  }
+  100% {
+    transform: translateX(280%);
+  }
+}
+
+@keyframes pulse {
+  0%,100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.04);
+  }
+}
