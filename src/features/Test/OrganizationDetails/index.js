@@ -110,7 +110,7 @@ const OrganizationDetails = ({
 
       {/* Footer */}
 
-      <ActionButtons onSave={onSave} onReset={onReset} />
+      <ActionButtons onSave={onSave} onReset={onReset} selected={selected}/>
     </Box>
   );
 };

@@ -3,7 +3,7 @@ import { Box, Button } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 
-const ActionButtons = ({ onSave, onReset }) => {
+const ActionButtons = ({ onSave, onReset, selected }) => {
   return (
     <Box
       sx={{
@@ -25,6 +25,7 @@ const ActionButtons = ({ onSave, onReset }) => {
         variant="outlined"
         startIcon={<RestartAltIcon />}
         onClick={onReset}
+        disabled={selected?.level}
       >
         Reset
       </Button>
