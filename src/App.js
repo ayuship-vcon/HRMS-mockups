@@ -12,17 +12,11 @@ import Chart from './features/Chart';
 import Test from './features/Test';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false)
-  console.log(loggedIn,'loggedInloggedIn')
   return (
     <>
       <BrowserRouter>
         <Routes>
-            <Route
-            path="/"
-            element={<Test />}
-          >
-          </Route>
+          <Route path="/" element={<Test />}/>
           <Route path='/nav' element={<Navbar />}/>
           <Route path='/users' element={<Users />}/>
           <Route path='/userform' element={<UserForm />}/>
@@ -31,7 +25,6 @@ function App() {
           <Route path='/test' element={<Test />}/>
 
         </Routes>
-        <button onClick={() => { setLoggedIn(!loggedIn) }} >press</button>
       </BrowserRouter>
     </>
   );
