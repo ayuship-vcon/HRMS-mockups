@@ -3,17 +3,28 @@ import { alpha } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { GroupIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function TreeNode({ node, depth = 0, selected, onSelect }) {
+function TreeNode({ node, depth = 0, selected, onSelect, collapseTrigger, expandTrigger }) {
   console.log(selected, "yyyyyyyyyyy");
   const [open, setOpen] = useState(true);
+
+  useEffect(() => {
+    if (collapseTrigger > 0) {
+      setOpen(false);
+    }
+  }, [collapseTrigger]);
+
+  useEffect(() => {
+    if (expandTrigger > 0) {
+      setOpen(true);
+    }
+  }, [expandTrigger]);
 
   const hasChildren = Array.isArray(node.children) && node.children.length > 0;
 
   const NodeIcon = node.icon || GroupIcon;
   const active = selected.name === node.name;
-  console.log(node, "nodenodenodenode");
   return (
     <Box>
       <Box
@@ -22,7 +33,6 @@ function TreeNode({ node, depth = 0, selected, onSelect }) {
           display: "flex",
           alignItems: "center",
           gap: 1,
-          ml: depth * 1.5,
           px: 1,
           py: 0.8,
           borderRadius: 2.5,
@@ -72,8 +82,8 @@ function TreeNode({ node, depth = 0, selected, onSelect }) {
         </Box>
       </Box>
 
-      {open && hasChildren && (
-        <Stack spacing={0.5} sx={{ mt: 0.5 }}>
+      {hasChildren && (
+        <Stack spacing={0.5} sx={{ display: open ? 'flex' : 'none', mt: 0.5, ml: 2.5, pl: 1, borderLeft: '1px dashed', borderColor: 'divider' }}>
           {node.children.map((child) => (
             <TreeNode
               key={`${child.level}-${child.name}`}
@@ -81,6 +91,8 @@ function TreeNode({ node, depth = 0, selected, onSelect }) {
               depth={depth + 1}
               selected={selected}
               onSelect={onSelect}
+              collapseTrigger={collapseTrigger}
+              expandTrigger={expandTrigger}
             />
           ))}
         </Stack>

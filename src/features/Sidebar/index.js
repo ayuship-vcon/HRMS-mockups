@@ -5,8 +5,10 @@ import PeopleIcon from "@mui/icons-material/People";
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useLayout } from "../../context/LayoutContext";
 
 const drawerWidth = 250;
+const collapsedDrawerWidth = 70;
 
 const sidebarItems = [
   {
@@ -39,6 +41,7 @@ function Sidebar() {
   const role = useSelector((state) => state.user.role);
   const navigate = useNavigate();
   const location = useLocation();
+  const { sidebarOpen } = useLayout();
 
   const filteredItems = sidebarItems.filter((item) =>
     item.roles.includes(role)
@@ -48,14 +51,17 @@ function Sidebar() {
     <Drawer
       variant="permanent"
       sx={{
-        width: drawerWidth,
+        width: sidebarOpen ? drawerWidth : collapsedDrawerWidth,
         flexShrink: 0,
+        transition: "width 0.3s",
         "& .MuiDrawer-paper": {
-          width: drawerWidth,
+          width: sidebarOpen ? drawerWidth : collapsedDrawerWidth,
+          transition: "width 0.3s",
           boxSizing: "border-box",
           bgcolor: "#1E293B",
           color: "#fff",
           borderRight: "none",
+          overflowX: "hidden",
         },
       }}
     >
@@ -63,7 +69,7 @@ function Sidebar() {
         <Typography
           variant="h6"
           fontWeight="bold"
-          sx={{ width: "100%", textAlign: "center" }}
+          sx={{ width: "100%", textAlign: "center", display: sidebarOpen ? "block" : "none" }}
         >
           Admin Panel
         </Typography>
@@ -91,11 +97,11 @@ function Sidebar() {
                 },
               }}
             >
-              <ListItemIcon sx={{ color: "#cbd5e1", minWidth: 40 }}>
+              <ListItemIcon sx={{ color: "#cbd5e1", minWidth: 40, justifyContent: sidebarOpen ? "initial" : "center", mr: sidebarOpen ? 2 : 'auto' }}>
                 {item.icon}
               </ListItemIcon>
 
-              <ListItemText primary={item.label} />
+              <ListItemText primary={item.label} sx={{ display: sidebarOpen ? "block" : "none" }} />
             </ListItemButton>
           ))}
         </List>

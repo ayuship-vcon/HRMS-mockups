@@ -10,10 +10,11 @@ import UserForm from './features/UserForm/UserForm';
 import RadarChart from './features/RadarChart';
 import Chart from './features/Chart';
 import Test from './features/Test';
+import { LayoutProvider } from './context/LayoutContext';
 
 function App() {
   return (
-    <>
+    <LayoutProvider>
       <HashRouter>
         <Routes>
           <Route path="/" element={<Test />}/>
@@ -26,7 +27,7 @@ function App() {
 
         </Routes>
       </HashRouter>
-    </>
+    </LayoutProvider>
   );
 }
 
