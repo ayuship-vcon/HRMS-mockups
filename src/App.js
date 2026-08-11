@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Home from './features/Home';
 import { useState } from 'react';
 import Login from './features/Login';
@@ -14,7 +14,7 @@ import Test from './features/Test';
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<Test />}/>
           <Route path='/nav' element={<Navbar />}/>
@@ -25,7 +25,7 @@ function App() {
           <Route path='/test' element={<Test />}/>
 
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
