@@ -1,7 +1,6 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "https://ayushy-patel.github.io/HRMS-mockups",
   "private": true,
   "proxy": "https://vconstruct-hrms-qa.azurewebsites.net",
   "dependencies": {

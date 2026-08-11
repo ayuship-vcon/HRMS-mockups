@@ -20,9 +20,8 @@ function App() {
         <Routes>
             <Route
             path="/"
-            element={loggedIn ? <Test /> : <Test />}
+            element={<Test />}
           >
-            <Route index element={<Home />} />
           </Route>
           <Route path='/nav' element={<Navbar />}/>
           <Route path='/users' element={<Users />}/>
