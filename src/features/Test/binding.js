@@ -137,11 +137,11 @@ export const metrics = [
 // tabConfig.js
 
 export const TAB_CONFIG = {
-  Company: ["Add", "Team Lead", "Leave Approvers"],
+  Company: ["Add", "Team Co-Lead", "Leave Approvers"],
   BU: ["Add", "BU Lead"],
-  Cluster: ["Add", "Cluster Lead"],
-  Team: ["Add", "Team Lead", "Leave Approvers"],
-  SubCluster: ["Add", "Sub Cluster Lead"],
+  Cluster: ["Add", "Cluster Co-Lead"],
+  Team: ["Add", "Team Co-Lead", "Leave Approvers"],
+  SubCluster: ["Add", "Sub Cluster Co-Lead"],
 };
 export const parentOrganizations = [
   "BU",
@@ -212,8 +212,8 @@ export const findParent = (tree, targetName, parent = null) => {
   return null;
 };
 export const leadTabs = [
-  "Team Lead",
+  "Team Co-Lead",
   "BU Lead",
-  "Cluster Lead",
-  "Sub Cluster Lead",
+  "Cluster Co-Lead",
+  "Sub Cluster Co-Lead",
 ];
