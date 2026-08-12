@@ -19,11 +19,25 @@ import Navbar from "../Navbar";
 import { metrics, orgTree } from "./binding";
 import TreeNode from "./Treenode";
 import OrganizationDetails from "./OrganizationDetails";
-
+import Footer from "../../components/Footer";
+import UnfoldLessIcon from "@mui/icons-material/UnfoldLess";
+import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 
 export default function OrgStructureMUI() {
   const [selected, setSelected] = useState({});
   const [activeTab, setActiveTab] = useState("Add");
+  const [collapseTrigger, setCollapseTrigger] = useState(0);
+  const [expandTrigger, setExpandTrigger] = useState(0);
+  const [isTreeCollapsed, setIsTreeCollapsed] = useState(false);
+
+  const handleToggleTree = () => {
+    if (isTreeCollapsed) {
+      setExpandTrigger((prev) => prev + 1);
+    } else {
+      setCollapseTrigger((prev) => prev + 1);
+    }
+    setIsTreeCollapsed(!isTreeCollapsed);
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -35,7 +49,8 @@ export default function OrgStructureMUI() {
           flexGrow: 1,
           bgcolor: "#f5f7fa",
           minHeight: "100vh",
-          pl: 3,
+          display: "flex",
+          flexDirection: "column",
           pt: 10,
         }}
       >
@@ -44,6 +59,9 @@ export default function OrgStructureMUI() {
           sx={{
             maxWidth: 1500,
             mx: "auto",
+            width: "100%",
+            px: { xs: 2, sm: 3, md: 4 },
+            mb: 6,
           }}
         >
           <Paper
@@ -180,8 +198,23 @@ export default function OrgStructureMUI() {
                       border: "1px solid",
                       borderColor: "divider",
                       borderRadius: 2,
+                      mr: 1
+                    }}
+                    onClick={handleToggleTree}
+                    title={isTreeCollapsed ? "Expand All" : "Collapse All"}
+                  >
+                    {isTreeCollapsed ? <UnfoldMoreIcon fontSize="small" /> : <UnfoldLessIcon fontSize="small" />}
+                  </IconButton>
+
+                  <IconButton
+                    size="small"
+                    sx={{
+                      border: "1px solid",
+                      borderColor: "divider",
+                      borderRadius: 2,
                     }}
                     onClick={()=>setSelected({})}
+                    title="Add Node"
                   >
                     <AddIcon fontSize="small" />
                   </IconButton>
@@ -194,6 +227,8 @@ export default function OrgStructureMUI() {
                       node={node}
                       selected={selected}
                       onSelect={setSelected}
+                      collapseTrigger={collapseTrigger}
+                      expandTrigger={expandTrigger}
                     />
                   ))}
                 </Stack>
@@ -233,6 +268,7 @@ export default function OrgStructureMUI() {
             </Box>
           </Card>
         </Stack>
+        <Footer />
       </Box>
     </Box>
   );

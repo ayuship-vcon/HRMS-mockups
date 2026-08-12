@@ -1,23 +1,21 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./features/Home";
-import { useState } from "react";
-import Login from "./features/Login";
 import Navbar from "./features/Navbar";
-import Layout from "./features/Layout";
 import Users from "./features/Users";
 import UserForm from "./features/UserForm/UserForm";
 import RadarChart from "./features/RadarChart";
 import Chart from "./features/Chart";
 import Test from "./features/Test";
+import { LayoutProvider } from './context/LayoutContext';
+import { HashRouter, Routes, Route } from 'react-router-dom';
+
 import Horizontal from "./features/Horizontal";
 
+
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  console.log(loggedIn, "loggedInloggedIn");
   return (
-    <>
-      <BrowserRouter>
+    <LayoutProvider>
+      <HashRouter>
         <Routes>
           <Route path="/" element={ <Test />}>
 
@@ -31,15 +29,8 @@ function App() {
           <Route path="/chart" element={<Chart />} />
           <Route path="/test" element={<Test />} />
         </Routes>
-        <button
-          onClick={() => {
-            setLoggedIn(!loggedIn);
-          }}
-        >
-          press
-        </button>
-      </BrowserRouter>
-    </>
+      </HashRouter>
+    </LayoutProvider>
   );
 }
 
