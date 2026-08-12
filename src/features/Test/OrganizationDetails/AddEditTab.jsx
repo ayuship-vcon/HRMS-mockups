@@ -82,7 +82,7 @@ const AddEditTab = ({ selected }) => {
         gap: 2,
       }}
     >
-      <ReadOnlyField label="Organization Name" value={"Vconstruct"} />
+      <ReadOnlyField label="Organization Name" value={"vConstruct"} />
 
       <TextField
         select
