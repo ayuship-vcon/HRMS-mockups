@@ -100,7 +100,7 @@ const AddEditTab = ({ selected }) => {
         ))}
       </TextField>
       <TextField
-        label="Group Name"
+        label="Name"
         size="small"
         value={groupName ?? ""}
         disabled={isEdit}
@@ -113,7 +113,7 @@ const AddEditTab = ({ selected }) => {
         onChange={(e) => setShortName(e.target.value)}
         size="small"
       />
-      {parentGroupOptions[level]?.length > 0 && (
+      {/* {parentGroupOptions[level]?.length > 0 && (
         <TextField
           select
           label="Parent Group"
@@ -131,11 +131,11 @@ const AddEditTab = ({ selected }) => {
             </MenuItem>
           ))}
         </TextField>
-      )}
+      )} */}
       {parentGroupOptions[level]?.length > 0 && (
         <TextField
           select
-          label={`${parentGroup} Name`}
+          label="Parent Group"
           size="small"
           fullWidth
           value={parentGroupName}
