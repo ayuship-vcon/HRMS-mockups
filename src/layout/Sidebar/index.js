@@ -1,66 +1,58 @@
 import { useSelector } from "react-redux";
-import { Drawer, Toolbar, List, ListItemButton, ListItemIcon, ListItemText, Typography, Box } from "@mui/material";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import PeopleIcon from "@mui/icons-material/People";
-import AssessmentIcon from "@mui/icons-material/Assessment";
-import PersonIcon from "@mui/icons-material/Person";
+import {
+  Drawer,
+  Toolbar,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+  Box,
+} from "@mui/material";
+
 import { useNavigate, useLocation } from "react-router-dom";
 import { useLayout } from "../../context/LayoutContext";
 
-const drawerWidth = 250;
-const collapsedDrawerWidth = 70;
+import { sidebarItems } from "./const";
+import { usePermission } from "../../hooks/usePermission";
 
-const sidebarItems = [
-  {
-    label: "Dashboard",
-    path: "/dashboard",
-    icon: <DashboardIcon />,
-    roles: ["admin", "user", "manager"],
-  },
-  {
-    label: "Users",
-    path: "/users",
-    icon: <PeopleIcon />,
-    roles: ["user"],
-  },
-  {
-    label: "Reports",
-    path: "/reports",
-    icon: <AssessmentIcon />,
-    roles: ["admin", "user"],
-  },
-  {
-    label: "Profile",
-    path: "/profile",
-    icon: <PersonIcon />,
-    roles: ["admin", "user", "manager"],
-  },
-];
+export const DRAWER_WIDTH = 250;
+export const COLLAPSED_DRAWER_WIDTH = 70;
 
 function Sidebar() {
-  const role = useSelector((state) => state.user.role);
   const navigate = useNavigate();
   const location = useLocation();
+
   const { sidebarOpen } = useLayout();
 
-  const filteredItems = sidebarItems.filter((item) =>
-    item.roles.includes(role)
-  );
+const { can } = usePermission();
+
+const filteredItems = sidebarItems.filter(
+  (item) => !item.permission || can(item.permission)
+);
 
   return (
     <Drawer
       variant="permanent"
       sx={{
-        width: sidebarOpen ? drawerWidth : collapsedDrawerWidth,
+        width: sidebarOpen
+          ? DRAWER_WIDTH
+          : COLLAPSED_DRAWER_WIDTH,
+
         flexShrink: 0,
-        transition: "width 0.3s",
         "& .MuiDrawer-paper": {
-          width: sidebarOpen ? drawerWidth : collapsedDrawerWidth,
+          width: sidebarOpen
+            ? DRAWER_WIDTH
+            : COLLAPSED_DRAWER_WIDTH,
+
           transition: "width 0.3s",
+
           boxSizing: "border-box",
+
           bgcolor: "#1E293B",
           color: "#fff",
           borderRight: "none",
+
           overflowX: "hidden",
         },
       }}
@@ -69,7 +61,13 @@ function Sidebar() {
         <Typography
           variant="h6"
           fontWeight="bold"
-          sx={{ width: "100%", textAlign: "center", display: sidebarOpen ? "block" : "none" }}
+          sx={{
+            width: "100%",
+            textAlign: "center",
+            display: sidebarOpen
+              ? "block"
+              : "none",
+          }}
         >
           Admin Panel
         </Typography>
@@ -85,23 +83,46 @@ function Sidebar() {
               sx={{
                 borderRadius: 2,
                 mb: 1,
+
                 "&.Mui-selected": {
                   bgcolor: "#1976d2",
                   color: "#fff",
+
                   "& .MuiListItemIcon-root": {
                     color: "#fff",
                   },
                 },
+
                 "&:hover": {
                   bgcolor: "#334155",
                 },
               }}
             >
-              <ListItemIcon sx={{ color: "#cbd5e1", minWidth: 40, justifyContent: sidebarOpen ? "initial" : "center", mr: sidebarOpen ? 2 : 'auto' }}>
+              <ListItemIcon
+                sx={{
+                  color: "#cbd5e1",
+                  minWidth: 40,
+
+                  justifyContent: sidebarOpen
+                    ? "initial"
+                    : "center",
+
+                  mr: sidebarOpen
+                    ? 2
+                    : "auto",
+                }}
+              >
                 {item.icon}
               </ListItemIcon>
 
-              <ListItemText primary={item.label} sx={{ display: sidebarOpen ? "block" : "none" }} />
+              <ListItemText
+                primary={item.label}
+                sx={{
+                  display: sidebarOpen
+                    ? "block"
+                    : "none",
+                }}
+              />
             </ListItemButton>
           ))}
         </List>

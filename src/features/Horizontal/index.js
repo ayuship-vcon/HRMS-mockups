@@ -14,8 +14,6 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import SaveIcon from "@mui/icons-material/Save";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
-import Sidebar from "../Sidebar";
-import Navbar from "../Navbar";
 import { metrics, orgTree } from "./binding";
 import TreeNode from "./Treenode";
 import HorizontalOrganizationDetails from "./HorizontalOrganizationDetails";
@@ -26,9 +24,7 @@ import HorizontalOrganizationDetails from "./HorizontalOrganizationDetails";
 
   return (
     <Box sx={{ display: "flex" }}>
-      <Navbar />
-
-      <Sidebar />
+    
       <Box
         sx={{
           flexGrow: 1,
