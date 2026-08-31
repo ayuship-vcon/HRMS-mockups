@@ -3,10 +3,29 @@ import { alpha } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { GroupIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function TreeNode({ node, depth = 0, selected, onSelect }) {
+function TreeNode({
+  node,
+  depth = 0,
+  selected,
+  onSelect,
+  collapseTrigger,
+  expandTrigger,
+}) {
   const [open, setOpen] = useState(true);
+
+  useEffect(() => {
+    if (collapseTrigger > 0) {
+      setOpen(false);
+    }
+  }, [collapseTrigger]);
+
+  useEffect(() => {
+    if (expandTrigger > 0) {
+      setOpen(true);
+    }
+  }, [expandTrigger]);
 
   const hasChildren = Array.isArray(node.children) && node.children.length > 0;
 
@@ -80,6 +99,8 @@ function TreeNode({ node, depth = 0, selected, onSelect }) {
               depth={depth + 1}
               selected={selected}
               onSelect={onSelect}
+              collapseTrigger={collapseTrigger}
+              expandTrigger={expandTrigger}
             />
           ))}
         </Stack>

@@ -15,4 +15,6 @@ export const PERMISSIONS = {
   HORIZONTAL_VIEW: "horizontal.view",
 
   VERTICAL_VIEW: "vertical.view",
+
+  APPLY_LEAVE: "apply-leave.view"
 };

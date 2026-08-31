@@ -14,6 +14,8 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import SaveIcon from "@mui/icons-material/Save";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import UnfoldLessIcon from "@mui/icons-material/UnfoldLess";
+import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import { metrics, orgTree } from "./binding";
 import TreeNode from "./Treenode";
 import HorizontalOrganizationDetails from "./HorizontalOrganizationDetails";
@@ -21,6 +23,18 @@ import HorizontalOrganizationDetails from "./HorizontalOrganizationDetails";
  function Horizontal() {
   const [selected, setSelected] = useState({});
   const [activeTab, setActiveTab] = useState("Add");
+  const [collapseTrigger, setCollapseTrigger] = useState(0);
+  const [expandTrigger, setExpandTrigger] = useState(0);
+  const [isTreeCollapsed, setIsTreeCollapsed] = useState(false);
+
+  const handleToggleTree = () => {
+    if (isTreeCollapsed) {
+      setExpandTrigger((previous) => previous + 1);
+    } else {
+      setCollapseTrigger((previous) => previous + 1);
+    }
+    setIsTreeCollapsed((previous) => !previous);
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -176,8 +190,27 @@ import HorizontalOrganizationDetails from "./HorizontalOrganizationDetails";
                       border: "1px solid",
                       borderColor: "divider",
                       borderRadius: 2,
+                      mr: 1,
                     }}
-                    onClick={()=>setSelected({})}
+                    onClick={handleToggleTree}
+                    title={isTreeCollapsed ? "Expand All" : "Collapse All"}
+                  >
+                    {isTreeCollapsed ? (
+                      <UnfoldMoreIcon fontSize="small" />
+                    ) : (
+                      <UnfoldLessIcon fontSize="small" />
+                    )}
+                  </IconButton>
+
+                  <IconButton
+                    size="small"
+                    sx={{
+                      border: "1px solid",
+                      borderColor: "divider",
+                      borderRadius: 2,
+                    }}
+                    onClick={() => setSelected({})}
+                    title="Add Node"
                   >
                     <AddIcon fontSize="small" />
                   </IconButton>
@@ -190,6 +223,8 @@ import HorizontalOrganizationDetails from "./HorizontalOrganizationDetails";
                       node={node}
                       selected={selected}
                       onSelect={setSelected}
+                      collapseTrigger={collapseTrigger}
+                      expandTrigger={expandTrigger}
                     />
                   ))}
                 </Stack>

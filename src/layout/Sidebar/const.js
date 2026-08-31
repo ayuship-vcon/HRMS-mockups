@@ -64,4 +64,12 @@ export const sidebarItems = [
     icon: <ViewModuleIcon />,
     permission: PERMISSIONS.VERTICAL_VIEW,
   },
+
+  {
+    label: "Apply Leave",
+    path: "/apply-leave",
+    icon: <ViewModuleIcon />,
+    permission: PERMISSIONS.APPLY_LEAVE,
+  },
+  
 ];

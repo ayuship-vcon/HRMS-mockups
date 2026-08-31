@@ -5,9 +5,9 @@ import AccountTreeIcon from "@mui/icons-material/AccountTree";
 export const orgTree = [
   {
     id: 1,
-    name: "Vconstruct",
+    name: "vConstruct",
     level: "Company",
-    code: "VCon",
+    code: "VCONSTRUCT",
     icon: BusinessIcon,
     children: [
       {

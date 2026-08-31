@@ -7,7 +7,7 @@ export const orgTree = [
     id: 1,
     name: "vConstruct",
     level: "Company",
-    code: "vCon",
+    code: "VCONSTRUCT",
     icon: BusinessIcon,
     children: [
       {

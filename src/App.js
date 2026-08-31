@@ -25,21 +25,10 @@ function App() {
     <LayoutProvider>
       <HashRouter>
         <Routes>
-
-          {/* ======================
-              PUBLIC
-          ======================= */}
-
           <Route
             path="/login"
             element={<Login />}
           />
-
-
-          {/* ======================
-              APPLICATION
-          ======================= */}
-
           <Route element={<AppLayout />}>
 
             <Route
@@ -141,6 +130,17 @@ function App() {
               }
             />
 
+            <Route
+              path="/apply-leave"
+              element={
+                <PermissionRoute
+                  permission="apply-leave.view"
+                >
+                  <ApplyLeave />
+                </PermissionRoute>
+              }
+            />
+
             {/* Access Denied */}
             <Route
               path="/access-denied"
@@ -149,7 +149,6 @@ function App() {
 
           </Route>
 
-          <Route path="/apply-leave" element={<ApplyLeave />} />
         </Routes>
       </HashRouter>
     </LayoutProvider>

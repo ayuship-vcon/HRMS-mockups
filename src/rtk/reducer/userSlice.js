@@ -17,6 +17,7 @@ const userSlice = createSlice({
       "radar-chart.view",
       "horizontal.view",
       "vertical.view",
+      "apply-leave.view"
     ],
 
     todos: [],
