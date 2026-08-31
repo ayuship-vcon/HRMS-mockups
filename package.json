@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ayuship-vcon.github.io/HRMS-mockups",
+  "homepage": ".",
   "proxy": "https://vconstruct-hrms-qa.azurewebsites.net",
   "dependencies": {
     "@azure/msal-browser": "^5.7.0",

@@ -15,6 +15,7 @@ import RadarChart from "./features/RadarChart";
 import Chart from "./features/Chart";
 import Test from "./features/Test";
 import Horizontal from "./features/Horizontal";
+import ApplyLeave from "./features/ApplyLeave";
 import BusinessTravelReport from "./features/BusinessTravelReport";
 import Login from "./features/Login";
 import EmployeProfile from "./features/EmployeProfile";
@@ -148,6 +149,7 @@ function App() {
 
           </Route>
 
+          <Route path="/apply-leave" element={<ApplyLeave />} />
         </Routes>
       </HashRouter>
     </LayoutProvider>
